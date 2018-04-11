@@ -28,7 +28,6 @@ public:
         QString title;
         QString url;
     };
-    Q_DECLARE_METATYPE(SearchResult)
 public:
     ISearchResultParser(QObject *parent=Q_NULLPTR) : QObject(parent) { }
 
@@ -42,6 +41,7 @@ public:
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(ISearchResultParser::ResultTypes)
+Q_DECLARE_METATYPE(ISearchResultParser::SearchResult)
 
 #define ISearchResultParser_iid "org.qt-project.Qt.yangminglong.ISearchResultParser"
 Q_DECLARE_INTERFACE(ISearchResultParser, ISearchResultParser_iid)
