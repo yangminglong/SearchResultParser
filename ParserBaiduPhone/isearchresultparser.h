@@ -15,15 +15,16 @@ public:
     Q_DECLARE_FLAGS(ResultTypes, ResultType)
     Q_FLAG(ResultTypes)
 
-    enum SearchType {
+    enum SearchDeviceType {
         SearchPc    ,
         SearchPhone ,
     };
     Q_ENUM(SearchType)
 
-    struct SearchResult
+    struct ResultRecordInfo
     {
-        SearchResult() {}
+        ResultRecordInfo() {}
+
         ResultType type;
         QString title;
         QString url;
@@ -35,13 +36,16 @@ public:
 
     virtual QString name() = 0;
 
-    virtual SearchType searchType() = 0;
+    virtual SearchDeviceType searchType() = 0;
 
-    virtual void getResultsAsyn(const QString& keyword, ResultTypes flags = ResultAll, std::function<void(QList<const SearchResult>&)> pFun = 0) = 0;
+    virtual void getResultsAsyn(const QString& keyword, int totalRecordNum, ResultTypes flags = ResultAll) = 0;
+
+signals:
+    void searchReply(const ResultRecordInfo& result);
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(ISearchResultParser::ResultTypes)
-Q_DECLARE_METATYPE(ISearchResultParser::SearchResult)
+Q_DECLARE_METATYPE(ISearchResultParser::ResultRecordInfo)
 
 #define ISearchResultParser_iid "org.qt-project.Qt.yangminglong.ISearchResultParser"
 Q_DECLARE_INTERFACE(ISearchResultParser, ISearchResultParser_iid)

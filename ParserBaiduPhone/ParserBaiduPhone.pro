@@ -34,6 +34,8 @@ HEADERS += \
 
 DISTFILES += ParserBaiduPhone.json 
 
+INCLUDEPATH += ../../ProjectGlobal
+
 unix {
     target.path = /usr/lib
     INSTALLS += target

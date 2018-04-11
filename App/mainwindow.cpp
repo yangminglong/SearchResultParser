@@ -17,9 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     manager->startRequest(QUrl("http://www.baidu.com"), HttpManager::Get, QByteArray(), [=](QByteArray* datas, QNetworkReply* reply){
         if (QNetworkReply::NoError == reply->error()) {
-//            int count = datas->count();
-            qDebug() << datas->count();
-//            qDebug() << u8"已执行回掉函数" << count;
+
         } else {
             qDebug() << reply->errorString();
         }
